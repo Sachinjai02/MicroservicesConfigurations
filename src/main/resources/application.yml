@@ -16,3 +16,6 @@ management.endpoints.web.exposure.include: "*"
 spring:
   profiles:
     active: test
+
+  config:
+    import: configserver:http://localhost:8888
