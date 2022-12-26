@@ -1,9 +1,9 @@
 package com.study.microservices_configurations.controller;
 
+import com.study.microservices_configurations.config.DBSettingsConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -21,11 +21,15 @@ public class GreetingsController {
     @Value("${greeting.to.list}")
     private List<String> members;
 
-    @Value("#{${dbParams}}")
+    @Value("#{${db.connectionParams}}")
     private Map<String, String> dbParams;
+
+    @Autowired
+    private DBSettingsConfig dbSettingsConfig;
+
     @GetMapping("/greeting")
     public String getGreetings() {
         return this.greetingMessage + " " + this.staticMessage
-                + " " + members + " " + dbParams;
+                + " " + members + " " + dbParams + "\n" + dbSettingsConfig;
     }
 }
