@@ -1,0 +1,15 @@
+greeting:
+        message: Hello World!!
+        to:
+          list: Sachin, Nidhi, Rahul, Raj
+
+app:
+   name: Demo Microservice configurations app
+   description: Learning Microservices through {$app.name}
+
+db:
+  connectionParams: "{userName:'ABC', pwd: 'password', port:'5421'}"
+  host: 127.0.0.1
+  schema: myschema
+
+management.endpoints.web.exposure.include: "*"
