@@ -4,6 +4,7 @@ import com.study.microservices_configurations.config.DBSettingsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,9 +30,16 @@ public class GreetingsController {
     @Autowired
     private DBSettingsConfig dbSettingsConfig;
 
+    @Autowired
+    private Environment environment;
     @GetMapping("/greeting")
     public String getGreetings() {
         return this.greetingMessage + " " + this.staticMessage
                 + " " + members + " " + dbParams + "\n" + dbSettingsConfig;
+    }
+
+    @GetMapping("/env")
+    public String getEnvDets() {
+        return this.environment.toString();
     }
 }
